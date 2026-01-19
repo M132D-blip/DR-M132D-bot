@@ -1,28 +1,30 @@
 <?php
-$input = file_get_contents("php://input");
-if (!$input) {
-    echo "OK";
-    exit;
-}
-// By @M132D
 
 ob_start();
-mkdir('data');
-mkdir('EMIL');
-mkdir('EMILS');
-mkdir('BUY');
-mkdir('assignment');
-mkdir('data/id');
-mkdir('data/txt');
-mkdir('data/api');
-$API_KEY= 'BOT_TOKEN';
-define('API_KEY',$API_KEY);
-echo file_get_contents("https://api.telegram.org/bot" . API_KEY . "/setwebhook?url=" . $_SERVER['SERVER_NAME'] . "" . $_SERVER['SCRIPT_NAME']);
-function bot($method,$datas=[]){
-$amrakl = http_build_query($datas);
-$url = "https://api.telegram.org/bot".API_KEY."/".$method."?$amrakl";
-$amrakl = file_get_contents($url);
-return json_decode($amrakl);
+
+function makeDir($dir){
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777, true);
+    }
+}
+
+makeDir('data');
+makeDir('EMIL');
+makeDir('EMILS');
+makeDir('BUY');
+makeDir('assignment');
+makeDir('data/id');
+makeDir('data/txt');
+makeDir('data/api');
+
+$API_KEY = getenv("BOT_TOKEN");
+define('API_KEY', $API_KEY);
+
+function bot($method, $datas = []) {
+    $amrakl = http_build_query($datas);
+    $url = "https://api.telegram.org/bot" . API_KEY . "/" . $method . "?" . $amrakl;
+    $amrakl = file_get_contents($url);
+    return json_decode($amrakl);
 }
 $update = json_decode(file_get_contents('php://input'));
 
