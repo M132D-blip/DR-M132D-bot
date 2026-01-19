@@ -11,7 +11,7 @@ mkdir('assignment');
 mkdir('data/id');
 mkdir('data/txt');
 mkdir('data/api');
-$API_KEY= '8203765177:AAGp5KofNg2xAju0WMbdDlvGwzHN0PZElIk';
+$API_KEY= 'BOT_TOKEN';
 define('API_KEY',$API_KEY);
 echo file_get_contents("https://api.telegram.org/bot" . API_KEY . "/setwebhook?url=" . $_SERVER['SERVER_NAME'] . "" . $_SERVER['SCRIPT_NAME']);
 function bot($method,$datas=[]){
