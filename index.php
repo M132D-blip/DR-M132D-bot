@@ -1,5 +1,9 @@
 <?php
-
+$input = file_get_contents("php://input");
+if (!$input) {
+    echo "OK";
+    exit;
+}
 // By @M132D
 
 ob_start();
